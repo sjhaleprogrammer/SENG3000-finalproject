@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>HTMX Navigation Bar with Three.js</title>
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="/css/styles.css">
   <script src="https://unpkg.com/htmx.org@1.7.0/dist/htmx.js"></script>
   <script src="https://threejs.org/build/three.js"></script>
 </head>
@@ -19,14 +19,6 @@
 </nav>
 
 
-
-<script>
-  // HTMX configuration (optional)
-  htmx.config = {
-    historyEnabled: true,
-  };
-</script>
-
 <!-- Three.js script -->
 <script>
   // Set up the scene
@@ -38,27 +30,55 @@
   renderer.setSize(window.innerWidth, window.innerHeight);
   document.body.appendChild(renderer.domElement);
 
-  // Create a cube and add it to the scene
-  var geometry = new THREE.BoxGeometry();
-  var material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-  var cube = new THREE.Mesh(geometry, material);
-  scene.add(cube);
+  // Create a textured sphere
+  var textureLoader = new THREE.TextureLoader();
+  var texture = textureLoader.load('images/texture.jpg');
+  var geometry = new THREE.SphereGeometry(3, 64, 64);
+  var material = new THREE.MeshStandardMaterial({
+    map: texture,
+  });
+  var sphere = new THREE.Mesh(geometry, material);
+  scene.add(sphere);
 
   // Position the camera
   camera.position.z = 5;
+
+  // Add HemisphereLight for ambient lighting
+  var hemisphereLight = new THREE.HemisphereLight(0xffffff, 0x404040, 1);
+  scene.add(hemisphereLight);
+
+  // Add PointLight to simulate the sun
+  var sunLight = new THREE.PointLight(0xffffff, 1);
+  sunLight.position.set(5, 5, 5);
+  scene.add(sunLight);
+
+  // Create background stars
+  var starsGeometry = new THREE.BufferGeometry();
+  var starsMaterial = new THREE.PointsMaterial({ color: 0xFFFFFF, size: 0.05 });
+
+  var starsVertices = [];
+  for (let i = 0; i < 1000; i++) {
+    const x = (Math.random() - 0.5) * 2000;
+    const y = (Math.random() - 0.5) * 2000;
+    const z = (Math.random() - 0.5) * 2000;
+    starsVertices.push(x, y, z);
+  }
+
+  starsGeometry.setAttribute('position', new THREE.Float32BufferAttribute(starsVertices, 3));
+  var stars = new THREE.Points(starsGeometry, starsMaterial);
+  scene.add(stars);
 
   // Render the scene
   var animate = function () {
     requestAnimationFrame(animate);
 
-    // Rotate the cube
-    cube.rotation.x += 0.01;
-    cube.rotation.y += 0.01;
+    // Rotate the sphere
+    sphere.rotation.y += 0.005;
 
     renderer.render(scene, camera);
   };
 
-  animate();
+  animate();    
 
   // Resize event listener
   window.addEventListener('resize', function () {
@@ -67,8 +87,13 @@
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
   }, false);
-  
 </script>
+
+
+
+
+<!-- White text on top of the Three.js scene -->
+<h1 style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white;">Hello, User</h1>
 
 </body>
 </html>
