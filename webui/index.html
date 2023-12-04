@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTMX Navigation Bar with Three.js</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="https://unpkg.com/htmx.org@1.7.0/dist/htmx.js"></script>
+  <script src="https://threejs.org/build/three.js"></script>
+</head>
+<body style="margin: 0; overflow: hidden;">
+
+<nav>
+  <ul>
+    <li><a href="#" hx-get="/home">Home</a></li>
+    <li><a href="#" hx-get="/about">About</a></li>
+    <li><a href="#" hx-get="/contact">Contact</a></li>
+  </ul>
+</nav>
+
+
+
+<script>
+  // HTMX configuration (optional)
+  htmx.config = {
+    historyEnabled: true,
+  };
+</script>
+
+<!-- Three.js script -->
+<script>
+  // Set up the scene
+  var scene = new THREE.Scene();
+  var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+
+  // Adjust the renderer size to cover the entire viewport
+  var renderer = new THREE.WebGLRenderer();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  document.body.appendChild(renderer.domElement);
+
+  // Create a cube and add it to the scene
+  var geometry = new THREE.BoxGeometry();
+  var material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+  var cube = new THREE.Mesh(geometry, material);
+  scene.add(cube);
+
+  // Position the camera
+  camera.position.z = 5;
+
+  // Render the scene
+  var animate = function () {
+    requestAnimationFrame(animate);
+
+    // Rotate the cube
+    cube.rotation.x += 0.01;
+    cube.rotation.y += 0.01;
+
+    renderer.render(scene, camera);
+  };
+
+  animate();
+
+  // Resize event listener
+  window.addEventListener('resize', function () {
+    // Update the camera aspect ratio and renderer size on window resize
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  }, false);
+  
+</script>
+
+</body>
+</html>
