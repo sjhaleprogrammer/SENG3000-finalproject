@@ -1,8 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Streaming_API.Data;
 using Streaming_API.Models;
 using System;
+using Streaming_API.Data;
+
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -10,9 +11,9 @@ using System.Threading.Tasks;
 [ApiController]
 public class BroadcastersController : ControllerBase
 {
-    private readonly ApiDbContext _context;
+    private readonly STREAMING_APIDbContext _context;
 
-    public BroadcastersController(ApiDbContext context)
+    public BroadcastersController(STREAMING_APIDbContext context)
     {
         _context = context;
     }

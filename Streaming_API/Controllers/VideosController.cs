@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Streaming_API.Data;
 using Streaming_API.Models;
+using Streaming_API.Data;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 [ApiController]
 public class VideosController : ControllerBase
 {
-    private readonly ApiDbContext _context;
+    private readonly STREAMING_APIDbContext _context;
 
-    public VideosController(ApiDbContext context)
+    public VideosController(STREAMING_APIDbContext context)
     {
         _context = context;
     }
