@@ -10,6 +10,9 @@ body, h1, h2, p, ul, li {
   
   nav {
     background-color: #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
   
   ul {
@@ -39,4 +42,74 @@ body, h1, h2, p, ul, li {
     padding: 20px;
     border: 1px solid #ddd;
   }
+  
+  .styled-element {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+  }
+
+  
+
+  .login-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    display: none;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    z-index: 1;
+    padding: 10px;
+    border-radius: 4px;
+  }
+
+  .nav-item {
+    position: relative;
+  }
+
+  .login-btn {
+    cursor: pointer;
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+  }
+
+
+  .login-dropdown form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .login-dropdown label {
+    margin-bottom: 5px;
+  }
+
+  .login-dropdown input,
+  .login-dropdown button {
+    margin-bottom: 10px;
+    padding: 8px;
+    border: 1px solid #333;
+    border-radius: 4px;
+  }
+
+  .login-dropdown button {
+    background-color: #007BFF;
+    color: white;
+    cursor: pointer;
+  }
+
+  .login-dropdown button:hover {
+    background-color: #0056b3;
+  }
+
+  .nav-item:hover .login-dropdown {
+    display: block;
+  }
+
+
+  
+
   

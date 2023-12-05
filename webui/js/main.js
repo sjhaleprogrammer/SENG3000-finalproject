@@ -1,71 +1,28 @@
+// Add an "active" class to the current tab
+var navbar = document.getElementsByClassName("navbar")[0];
+var navItems = navbar.getElementsByClassName("nav-item");
 
-(function ($) {
-    "use strict";
-
-
-     /*==================================================================
-    [ Focus input ]*/
-    $('.input100').each(function(){
-        $(this).on('blur', function(){
-            if($(this).val().trim() != "") {
-                $(this).addClass('has-val');
-            }
-            else {
-                $(this).removeClass('has-val');
-            }
-        })    
-    })
-  
-  
-    /*==================================================================
-    [ Validate ]*/
-    var input = $('.validate-input .input100');
-
-    $('.validate-form').on('submit',function(){
-        var check = true;
-
-        for(var i=0; i<input.length; i++) {
-            if(validate(input[i]) == false){
-                showValidate(input[i]);
-                check=false;
-            }
-        }
-
-        return check;
-    });
-
-
-    $('.validate-form .input100').each(function(){
-        $(this).focus(function(){
-           hideValidate(this);
-        });
-    });
-
-    function validate (input) {
-        if($(input).attr('type') == 'email' || $(input).attr('name') == 'email') {
-            if($(input).val().trim().match(/^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{1,5}|[0-9]{1,3})(\]?)$/) == null) {
-                return false;
-            }
-        }
-        else {
-            if($(input).val().trim() == ''){
-                return false;
-            }
-        }
+for (var i = 0; i < navItems.length; i++) {
+  navItems[i].addEventListener("click", function() {
+    var current = document.getElementsByClassName("active");
+    if (current.length > 0) {
+      current[0].className = current[0].className.replace(" active", "");
     }
+    this.className += " active";
+  });
+}
 
-    function showValidate(input) {
-        var thisAlert = $(input).parent();
 
-        $(thisAlert).addClass('alert-validate');
-    }
 
-    function hideValidate(input) {
-        var thisAlert = $(input).parent();
+var interactiveBox = document.getElementById("interactive-box");
+var boxText = document.getElementById("box-text");
 
-        $(thisAlert).removeClass('alert-validate');
-    }
-    
-    
+interactiveBox.addEventListener("click", function() {
+  boxText.textContent = "Clicked!";
+  interactiveBox.style.backgroundColor = "#e74c3c";
+});
 
-})(jQuery);
+interactiveBox.addEventListener("mouseout", function() {
+  boxText.textContent = "Click me!";
+  interactiveBox.style.backgroundColor = "#3498db";
+});
