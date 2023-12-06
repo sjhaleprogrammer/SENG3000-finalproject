@@ -1,1 +1,41 @@
 //defining endpoints here
+@WebApiHost = "http://localhost:5013"
+
+POST {{WebApiHost}}/api/token/authenticate
+Content-Type: application/json
+
+{
+    "email": "",
+    "password": ""
+}
+
+###
+
+POST {{WebApiHost}}/api/ApplicationUsers
+Content-Type: application/json
+
+{
+    "Email": "",
+    "FirstName": "",
+    "LastName": "",
+    "PasswordHash": "",
+    "PasswordSalt": "",
+
+}
+
+###
+DELETE {{WebApiHost}}/api/ApplicationUser
+
+###
+
+POST {{WebApiHost}}/api/Videos
+Content-Type: application/json
+
+{
+    "VideoUrl":"",
+    "Title":"",
+    "Broadcaster":"",
+}
+
+###
+GET {{WebApiHost}}/api/Videos
