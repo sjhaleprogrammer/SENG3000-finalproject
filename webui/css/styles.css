@@ -31,12 +31,12 @@ body{
   width: 100%;
   height: 100px;  
   line-height: 100px;
-  background: linear-gradient(rgba(39,139,339,0.6), transparent);
+ 
   z-index: 100;
 }
 
 .nav-logo p{
-  text-shadow: #7d45ff 0px 0px 10px, #7d45ff 0px 0px 20px, #7d45ff 0px 0px 30px, #7d45ff 0px 0px 40px, #7d45ff 0px 0px 50px, #7d45ff 0px 0px 60px, #7d45ff 0px 0px 70px;
+  
 
   color: #fff;
   font-size: 30px;
