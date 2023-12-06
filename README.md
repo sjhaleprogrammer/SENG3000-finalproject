@@ -4,13 +4,12 @@ This repository contains a sample project demonstrating the integration of a .NE
 
 
 ## Prerequisites (not fully decided)
-.NET 7 SDK
-Nim HappyX Framework
-HTMX library (included in the project)
-Getting Started
+* .NET 7 SDK
+* Nim HappyX Framework
+* HTMX library 
 
 
 ## Build commands
-dotnet run --launch-profile https
-nimble build (not tested on windows)
+* dotnet run --launch-profile https
+* nimble build (not tested on windows)
 
