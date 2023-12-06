@@ -8,7 +8,7 @@
 }
 
 body{
-  background: url("/images/texture.jpg");
+  background: url("/webui/images/texture.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
