@@ -2,41 +2,142 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HTMX Navigation Bar with Three.js</title>
-  <link rel="stylesheet" href="/css/styles.css">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="css/styles.css">
   <script src="https://unpkg.com/htmx.org@1.7.0/dist/htmx.js"></script>
   <script src="https://threejs.org/build/three.js"></script>
-
+  <title>HTMX Navigation Bar with Three.js</title>
 </head>
-<body style="margin: 0; overflow: hidden;">
+<body>
+  <div class="wrapper">
+    <nav class="navbar">
+      <div class= "nav-logo">
+        <p>ENSG3000 .</p>
+      </div>
+      <div class="nav-menu" id="navMenu">
+        <ul>
+          <li><a href="#" class="link active">Home</a></li>
+          <li><a href="#" class="link">About</a></li>
+          <li><a href="#" class="link">Contact</a></li>
+        </ul>
+      </div>
+      <div class="nav-btn">
+        <button class="btn white-btn" id="login-btn" onclick="login()">Sign In</button>
+        <button class="btn" id="signup-btn" onclick="signup()">Sign Up</button>
+      </div>
+      <div class="nav-menu-btn">
+        <i class="bx bx-menu" onclick="MyMenuFunction()"></i>
+      </div>  
+    </nav>
 
-<nav>
-  <ul>
-    <li><a href="#" hx-get="/home">Home</a></li>
-    <li><a href="#" hx-get="/about">About</a></li>
-    <li><a href="#" hx-get="/contact">Contact</a></li>
-  </ul>
-  <div class="nav-item">
-    <!-- Move the login button to the right side -->
-    <a href="#" class="login-btn">Login</a>
-    <!-- Add the login dropdown content here -->
-    <div class="login-dropdown">
-      <!-- Add your login form or other content here -->
-      <form>
-        <!-- Your login form fields go here -->
-        <input type="text" placeholder="Username">
-        <input type="password" placeholder="Password">
-        <button type="submit">Login</button>
-      </form>
+    <!-- Form box -->
+  <div class="form-box">
+    <span class="borderLine"></span>
+
+    <!-- Login form -->
+    <div class="login-container" id="login">
+      <div class="top">
+        <span>Don't Have an account? <a href="#" onclick="signup()"> Sign up</a></span>
+        <header>Login</header>
+      </div>
+      <div class="input-box">
+        <input type="text" class="input-field" placeholder="Username or Email">
+        <i class="bx bx-user"></i>
+      </div>
+      <div class="input-box">
+        <input type="password" class="input-field" placeholder="Password">
+        <i class="bx bx-lock-alt"></i>
+      </div>
+      <div class="input-box">
+        <input type="submit" class="submit" value="Sign In">
+      </div>
+      <div class="two-col">
+        <div class="one">
+          <input type="checkbox" id="login-check">
+          <label for="login-check">Remember Me</label>
+        </div>
+        <div class="two">
+          <label><a href="#">Forgot password?</a></label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Signup form -->
+    <div class="signup-container" id="sign-up">
+      <div class="top">
+        <span>Have an account? <a href="#" onclick="login()"> Sign In</a></span>
+        <header>Sign up</header>
+      </div>
+      <div class="two-forms">
+        <div class="input-box">
+          <input type="text" class="input-field" placeholder="First Name">
+          <i class="bx bx-user"></i>
+        </div>
+        <div class="input-box">
+          <input type="text" class="input-field" placeholder="Last Name">
+          <i class="bx bx-user"></i>
+        </div>
+      </div>
+      <div class="input-box">
+        <input type="text" class="input-field" placeholder="Email">
+        <i class="bx bx-envelope"></i>
+      </div>
+      <div class="input-box">
+        <input type="password" class="input-field" placeholder="Password">
+        <i class="bx bx-lock-alt"></i>
+      </div>
+      <div class="input-box">
+        <input type="submit" class="submit" value="signup">
+      </div>
+      <div class="two-col">
+        <div class="one">
+          <input type="checkbox" id="signup-check">
+          <label for="signup-check">Remember Me</label>
+        </div>
+        <div class="two">
+          <label><a href="#">Terms & conditions</a></label>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-</nav>
+  
+<script>
+  function MyMenuFunction() {
+    var x = document.getElementById("navMenu");
+    if(x.className === "nav-menu") {
+      x.className += " responsive";
+    } else {
+      x.className = "nav-menu";
+    }
+  }
+</script>
 
-<script src="js/three.js"></script>
+<script>
+  var a = document.getElementById("login-btn");
+  var b = document.getElementById("signup-btn");
+  var c = document.getElementById("login");
+  var d = document.getElementById("sign-up");
+  
+  function login(){
+    c.style.left = "4px";
+    d.style.right = "-520px";
+    a.className += " white-btn";
+    b.className = "btn";
+    c.style.opacity = 1;
+    d.style.opacity = 0;
+  }
 
-<!-- White text on top of the Three.js scene -->
-<h1 style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white;">Hello, User</h1>
-
+  function signup() {
+    c.style.left = "-510px";
+    d.style.right = "5px";
+    a.className = "btn";
+    b.className += " white-btn";
+    c.style.opacity = 0;
+    d.style.opacity = 1;
+  }
+</script>
 </body>
 </html>
