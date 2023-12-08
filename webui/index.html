@@ -1,143 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-  <link rel="stylesheet" href="css/styles.css">
-  <script src="https://unpkg.com/htmx.org@1.7.0/dist/htmx.js"></script>
-  <script src="https://threejs.org/build/three.js"></script>
-  <title>HTMX Navigation Bar with Three.js</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTMX SPA with Views</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://unpkg.com/htmx.org@1.6.0/dist/htmx.min.js"></script>
 </head>
 <body>
-  <div class="wrapper">
-    <nav class="navbar">
-      <div class= "nav-logo">
-        <p>SENG 3000</p>
-      </div>
-      <div class="nav-menu" id="navMenu">
-        <ul>
-          <li><a href="#" class="link active">Home</a></li>
-          <li><a href="#" class="link">About</a></li>
-          <li><a href="#" class="link">Contact</a></li>
+  
+  
+
+  <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/home" hx-get="/home" hx-target="#content">ViewVerse</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/about" hx-get="/about" hx-target="#content">About</a>
+          </li>
+          
+          
         </ul>
-      </div>
-      <div class="nav-btn">
-        <button class="btn white-btn" id="login-btn" onclick="login()">Sign In</button>
-        <button class="btn" id="signup-btn" onclick="signup()">Sign Up</button>
-      </div>
-      <div class="nav-menu-btn">
-        <i class="bx bx-menu" onclick="MyMenuFunction()"></i>
-      </div>  
-    </nav>
-
-    <!-- Form box -->
-  <div class="form-box">
-    <span class="borderLine"></span>
-
-    <!-- Login form -->
-    <div class="login-container" id="login">
-      <div class="top">
-        <span>Don't Have an account? <a href="#" onclick="signup()"> Sign up</a></span>
-        <header>Login</header>
-      </div>
-      <div class="input-box">
-        <input type="text" class="input-field" placeholder="Username or Email">
-        <i class="bx bx-user"></i>
-      </div>
-      <div class="input-box">
-        <input type="password" class="input-field" placeholder="Password">
-        <i class="bx bx-lock-alt"></i>
-      </div>
-      <div class="input-box">
-        <input type="submit" class="submit" value="Sign In">
-      </div>
-      <div class="two-col">
-        <div class="one">
-          <input type="checkbox" id="login-check">
-          <label for="login-check">Remember Me</label>
-        </div>
-        <div class="two">
-          <label><a href="#">Forgot password?</a></label>
-        </div>
+        <form class="d-flex" role="search">
+          <button class="btn btn-outline-primary" href="/login" hx-get="/login" hx-target="#content">Login</button>
+        </form>
       </div>
     </div>
+  </nav>
 
-    <!-- Signup form -->
-    <div class="signup-container" id="sign-up">
-      <div class="top">
-        <span>Have an account? <a href="#" onclick="login()"> Sign In</a></span>
-        <header>Sign up</header>
-      </div>
-      <div class="two-forms">
-        <div class="input-box">
-          <input type="text" class="input-field" placeholder="First Name">
-          <i class="bx bx-user"></i>
-        </div>
-        <div class="input-box">
-          <input type="text" class="input-field" placeholder="Last Name">
-          <i class="bx bx-user"></i>
-        </div>
-      </div>
-      <div class="input-box">
-        <input type="text" class="input-field" placeholder="Email">
-        <i class="bx bx-envelope"></i>
-      </div>
-      <div class="input-box">
-        <input type="password" class="input-field" placeholder="Password">
-        <i class="bx bx-lock-alt"></i>
-      </div>
-      <div class="input-box">
-        <input type="submit" class="submit" value="signup">
-      </div>
-      <div class="two-col">
-        <div class="one">
-          <input type="checkbox" id="signup-check">
-          <label for="signup-check">Remember Me</label>
-        </div>
-        <div class="two">
-          <label><a href="#">Terms & conditions</a></label>
-          </div>
-        </div>
-      </div>
-    </div>
+  <br>
+
+  <div id="content" hx-get="/home" hx-trigger="load">
+    
+    <!-- Content will be dynamically loaded here -->
   </div>
-  
-<script>
-  function MyMenuFunction() {
-    var x = document.getElementById("navMenu");
-    if(x.className === "nav-menu") {
-      x.className += " responsive";
-    } else {
-      x.className = "nav-menu";
-    }
-  }
-</script>
 
-<script>
-  var a = document.getElementById("login-btn");
-  var b = document.getElementById("signup-btn");
-  var c = document.getElementById("login");
-  var d = document.getElementById("sign-up");
-  
-  function login(){
-    c.style.left = "4px";
-    d.style.right = "-520px";
-    a.className += " white-btn";
-    b.className = "btn";
-    c.style.opacity = 1;
-    d.style.opacity = 0;
-  }
-
-  function signup() {
-    c.style.left = "-510px";
-    d.style.right = "5px";
-    a.className = "btn";
-    b.className += " white-btn";
-    c.style.opacity = 0;
-    d.style.opacity = 1;
-  }
-</script>
 </body>
 </html>

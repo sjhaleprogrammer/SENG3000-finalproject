@@ -1,0 +1,10 @@
+body {
+    background-color: black; /* Set the background color to black */
+    color: white; /* Set the text color to white */
+    
+  }
+
+div {
+    padding-left: 10px;
+    padding-right: 10px;
+}
