@@ -5,6 +5,8 @@ using Streaming_API.Data;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+
 
 [Route("api/[controller]")]
 [ApiController]
@@ -18,6 +20,7 @@ public class VideosController : ControllerBase
     }
 
     // GET: api/Videos
+    [AllowAnonymous]
     [HttpGet]
     public IActionResult GetVideos()
     {
@@ -26,6 +29,7 @@ public class VideosController : ControllerBase
     }
 
     // GET: api/Videos/5
+    [AllowAnonymous]
     [HttpGet("{id}")]
     public IActionResult GetVideo(int id)
     {
@@ -38,6 +42,7 @@ public class VideosController : ControllerBase
     }
 
     // POST: api/Videos
+    [Authorize(Policy= "Authenticated")]
     [HttpPost]
     public async Task<IActionResult> PostVideo([FromBody] Video video)
     {
@@ -81,6 +86,7 @@ public class VideosController : ControllerBase
     }
 
     // DELETE: api/Videos/5
+    [Authorize(Policy = "AdminOnly")]
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteVideo(int id)
     {
