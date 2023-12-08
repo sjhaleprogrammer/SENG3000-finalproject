@@ -6,6 +6,7 @@ using Streaming_API.Data;
 
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 [Route("api/[controller]")]
 [ApiController]
@@ -20,6 +21,7 @@ public class BroadcastersController : ControllerBase
 
 
     // GET: /
+    [AllowAnonymous]
     [HttpGet]
     [Route("/")]
     public ActionResult<string> Get()
