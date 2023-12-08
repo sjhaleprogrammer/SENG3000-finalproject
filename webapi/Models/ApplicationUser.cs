@@ -12,10 +12,10 @@ namespace Streaming_API.Models;
     #nullable enable
     public class ApplicationUser : IdentityUser
     {
-        public ApplicationUser()
-        {
-            Role = new Role(); 
-        }
+        // public ApplicationUser()
+        // {
+        //     Role = new Role(); 
+        // }
 
 
 
