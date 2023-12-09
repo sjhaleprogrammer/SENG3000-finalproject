@@ -41,25 +41,13 @@
   <div id="content" hx-get="/home" hx-trigger="load">
     
     <!-- Content will be dynamically loaded here -->
+    
   </div>
 
 
 
-  <!-- Display token here -->
-  <div id="token"></div>
-
-  <script>
-    function handleLoginResponse(xhr, params) {
-      // Extract the token from the response
-      const token = JSON.parse(xhr.responseText).token;
-      
-      // Set the token in the header for future requests
-      htmx.config.headers['Authorization'] = `Bearer ${token}`;
-    }
-
-    // Register the function to handle the response
-    htmx.on('htmx:afterRequest', handleLoginResponse);
-  </script>
-
+  <script src="js/main.js"></script>
+ 
+  
 </body>
 </html>

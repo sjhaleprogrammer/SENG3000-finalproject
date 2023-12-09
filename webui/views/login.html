@@ -4,16 +4,19 @@
    
 <body>
 <!-- Login form -->
-<form id="loginForm">
-  <label for="username">Username:</label>
-  <input type="text" id="username" name="username" required>
-
+<form hx-post="/authenticate" hx-target="#loginForm" hx-swap="outerHTML" hx-headers='{"Content-Type": "application/json"}'>
+  <label for="email">Email:</label>
+  <input type="email" id="email" name="email" required>
+  <br>
   <label for="password">Password:</label>
   <input type="password" id="password" name="password" required>
-
-  <button type="button" hx-post="http://localhost:5013/api/token/authenticate" hx-target="#token" hx-swap="outerHTML" hx-trigger="click">Login</button>
-
-  
+  <br>
+  <button type="button" onclick="login()">Login</button>
 </form>
+
+
+<div id="result">
+  <!-- The server response will replace this content -->
+</div>
 
 </body>
