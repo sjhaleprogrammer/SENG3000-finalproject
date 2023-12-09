@@ -11,8 +11,8 @@ POST http://localhost:5013/api/token/authenticate
 Content-Type: application/json
 
 {
-    "email": "",
-    "password": ""
+    "email": "JohnDoe123@gmail.com",
+    "password": "Verysecurepassword123"
 }
 
 ###

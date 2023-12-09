@@ -11,5 +11,5 @@ This repository contains a sample project demonstrating the integration of a .NE
 
 ## Build commands
 * dotnet run --launch-profile https
-* nimble build (not tested on windows) this creates a "webui" the binary
+* nimble build (not tested on windows) this creates a "webui" the binary (runs with ./webui)
 
